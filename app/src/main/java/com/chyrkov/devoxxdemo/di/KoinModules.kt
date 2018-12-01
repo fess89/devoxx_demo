@@ -1,5 +1,6 @@
 package com.chyrkov.devoxxdemo.di
 
+import com.chyrkov.devoxxdemo.add.presentation.AddEventViewModel
 import com.chyrkov.devoxxdemo.main.data.DevoxxRepository
 import com.chyrkov.devoxxdemo.main.viewmodel.DevoxxLiveData
 import com.chyrkov.devoxxdemo.main.viewmodel.DevoxxViewModel
@@ -15,6 +16,12 @@ class KoinModules {
         single { DevoxxRepository(get()) }
         single { DevoxxLiveData(get()) }
         single { DevoxxViewModel(get()) }
+
+    }
+
+    private val addEventModule = module {
+
+        single { AddEventViewModel() }
 
     }
 

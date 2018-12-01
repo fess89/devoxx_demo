@@ -1,5 +1,6 @@
 package com.chyrkov.devoxxdemo.main.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chyrkov.devoxxdemo.add.presentation.AddEventActivity
 import com.chyrkov.devoxxdemo.databinding.FragmentMainBinding
 import com.chyrkov.devoxxdemo.main.adapter.DevoxxAdapter
 import com.chyrkov.devoxxdemo.main.adapter.DevoxxAdapterItem
@@ -38,8 +40,14 @@ class DevoxxFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        devoxxViewModel.liveData.observe(this, Observer<List<DevoxxAdapterItem>> {
+        devoxxViewModel.devoxxLiveData.observe(this, Observer<List<DevoxxAdapterItem>> {
             adapter.setData(it)
         })
+        devoxxViewModel.clicks.observe(this, Observer<Boolean> { if (it) startAddActivity() })
+    }
+
+    private fun startAddActivity() {
+        val intent = Intent(context, AddEventActivity::class.java)
+        startActivityForResult(intent, 42)
     }
 }

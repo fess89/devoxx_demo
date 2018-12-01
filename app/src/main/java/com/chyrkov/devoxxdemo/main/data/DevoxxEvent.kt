@@ -5,10 +5,10 @@ import java.util.*
 
 @IgnoreExtraProperties
 data class DevoxxEvent(
-    val name: String? = "",
-    val type: DevoxxEventType = DevoxxEventType.UNDEFINED,
-    val location: String? = "",
-    val date: Date? = null,
+    val eventType: String? = null,
+    val name: String? = null,
+    val type: String = "undefined",
+    val location: String? = null,
     val startTime: Date? = null,
     val endTime: Date? = null,
     val lecturers: List<String>? = null,

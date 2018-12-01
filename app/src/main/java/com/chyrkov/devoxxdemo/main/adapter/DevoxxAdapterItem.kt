@@ -3,9 +3,16 @@ package com.chyrkov.devoxxdemo.main.adapter
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.chyrkov.devoxxdemo.main.data.DevoxxEvent
-import org.joda.time.DateTime
+import com.chyrkov.devoxxdemo.main.data.DevoxxEventType
+import com.chyrkov.devoxxdemo.main.data.LectureTopic
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 
 class DevoxxAdapterItem(private val event: DevoxxEvent) {
+
+    fun eventType(): DevoxxEventType {
+        return DevoxxEventType.fromString(event.eventType)
+    }
 
     fun name(): String? {
         return event.name
@@ -20,12 +27,9 @@ class DevoxxAdapterItem(private val event: DevoxxEvent) {
     }
 
     fun timeBounds(): String {
-        val startDateTime = DateTime(event.startTime)
-        val endDateTime = DateTime(event.endTime)
-        return "%2d:%2d - %2d:%2d".format(
-            startDateTime.hourOfDay().get(), startDateTime.minuteOfHour().get(),
-            endDateTime.hourOfDay().get(), endDateTime.minuteOfHour().get()
-        )
+        val start = event.startTime?.let { pattern.print(it.time) } ?: ""
+        val end = event.endTime?.let { pattern.print(it.time) } ?: ""
+        return "$start - $end"
     }
 
     fun showLikes(): Boolean {
@@ -37,6 +41,11 @@ class DevoxxAdapterItem(private val event: DevoxxEvent) {
     }
 
     fun labelColor(context: Context): Int {
-        return ContextCompat.getColor(context, event.type.colorResource())
+        val topic = LectureTopic.fromString(event.type)
+        return ContextCompat.getColor(context, topic.colorResource())
+    }
+
+    companion object {
+        val pattern: DateTimeFormatter = DateTimeFormat.forPattern("hh:mma")
     }
 }

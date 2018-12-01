@@ -1,9 +1,6 @@
 package com.chyrkov.devoxxdemo.main.data
 
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 
 class DevoxxRepository(private val firestore: FirebaseFirestore) {
 
@@ -12,6 +9,7 @@ class DevoxxRepository(private val firestore: FirebaseFirestore) {
     fun subscribe(listener: (List<DevoxxEvent>) -> Unit) {
         registration = firestore
             .collection("events")
+            .orderBy("startTime", Query.Direction.ASCENDING)
             .addSnapshotListener(EventListener<QuerySnapshot> { snapshot, _ ->
                 if (snapshot == null) {
                     return@EventListener

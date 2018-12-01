@@ -1,17 +1,10 @@
 package com.chyrkov.devoxxdemo.main.adapter
 
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.chyrkov.devoxxdemo.BR
-import com.chyrkov.devoxxdemo.databinding.AdapterItemDevoxxBinding
 
-class DevoxxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+abstract class DevoxxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val binding: AdapterItemDevoxxBinding = DataBindingUtil.bind(view)!!
+    abstract fun bind(item: DevoxxAdapterItem)
 
-    fun bind(item: DevoxxAdapterItem) {
-        binding.setVariable(BR.event, item)
-        binding.executePendingBindings()
-    }
 }

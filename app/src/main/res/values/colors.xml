@@ -15,4 +15,5 @@
     <color name="architecture">#0022b9</color>
     <color name="web">#1ab749</color>
     <color name="undefined">#000000</color>
+    <color name="color_text_white">#ffffff</color>
 </resources>
