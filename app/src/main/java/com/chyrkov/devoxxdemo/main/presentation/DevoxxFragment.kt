@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chyrkov.devoxxdemo.BR
 import com.chyrkov.devoxxdemo.add.presentation.AddEventActivity
 import com.chyrkov.devoxxdemo.databinding.FragmentMainBinding
 import com.chyrkov.devoxxdemo.main.adapter.DevoxxAdapter
@@ -40,6 +41,9 @@ class DevoxxFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.setVariable(BR.viewModel, devoxxViewModel)
+        binding.executePendingBindings()
+
         devoxxViewModel.devoxxLiveData.observe(this, Observer<List<DevoxxAdapterItem>> {
             adapter.setData(it)
         })

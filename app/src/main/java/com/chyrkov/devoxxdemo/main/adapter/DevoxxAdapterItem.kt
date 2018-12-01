@@ -41,7 +41,7 @@ class DevoxxAdapterItem(private val event: DevoxxEvent) {
     }
 
     fun labelColor(context: Context): Int {
-        val topic = LectureTopic.fromString(event.type)
+        val topic = LectureTopic.fromString(event.topic)
         return ContextCompat.getColor(context, topic.colorResource())
     }
 

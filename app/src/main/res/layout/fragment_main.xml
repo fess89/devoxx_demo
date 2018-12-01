@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <variable name="viewModel" type="com.chyrkov.devoxxdemo.main.viewmodel.DevoxxViewModel"/>
+        <variable
+            name="viewModel"
+            type="com.chyrkov.devoxxdemo.main.viewmodel.DevoxxViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:enabled="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/recycler_view"
-                android:layout_marginEnd="@dimen/margin_large"
-                android:layout_marginBottom="@dimen/margin_large"
-                app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
-                android:id="@+id/plus_fab"
-                app:fabSize="normal"
-                app:elevation="5dp"
-                android:onClick="@{viewModel.onAddClicked()}"
-                android:src="@drawable/plus"/>
+            android:id="@+id/plus_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:enabled="true"
+            android:onClick="@{() -> viewModel.onAddClicked()}"
+            android:src="@drawable/plus"
+            app:elevation="5dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

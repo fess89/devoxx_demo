@@ -3,5 +3,5 @@
     <dimen name="item_height">70dip</dimen>
     <dimen name="margin_small">8dip</dimen>
     <dimen name="margin_large">16dip</dimen>
-    <dimen name="font_size_default">16sp</dimen>
+    <dimen name="font_size_default">18sp</dimen>
 </resources>
