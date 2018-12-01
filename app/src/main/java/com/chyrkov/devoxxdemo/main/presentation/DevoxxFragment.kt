@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chyrkov.devoxxdemo.databinding.FragmentMainBinding
 import com.chyrkov.devoxxdemo.main.adapter.DevoxxAdapter
-import com.chyrkov.devoxxdemo.main.data.DevoxxAdapterItem
+import com.chyrkov.devoxxdemo.main.adapter.DevoxxAdapterItem
 import com.chyrkov.devoxxdemo.main.viewmodel.DevoxxViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

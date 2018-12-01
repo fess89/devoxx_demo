@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#ff4800</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="color_likes">#ff4747</color>
+    <color name="color_text_black">#000000</color>
+    <color name="methodology">#00ff00</color>
+    <color name="cloud">#ff00ff</color>
+    <color name="server">#0000ff</color>
+    <color name="ml">#fafa00</color>
+    <color name="bigdata">#00fafa</color>
+    <color name="jvm">#aabbcc</color>
+    <color name="mobile">#c50404</color>
+    <color name="architecture">#0022b9</color>
+    <color name="web">#1ab749</color>
+    <color name="undefined">#000000</color>
 </resources>

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chyrkov.devoxxdemo.R
-import com.chyrkov.devoxxdemo.main.data.DevoxxAdapterItem
 import java.util.*
 
 class DevoxxAdapter(val items: MutableList<DevoxxAdapterItem> = ArrayList()) :

@@ -1,7 +1,7 @@
 package com.chyrkov.devoxxdemo.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.chyrkov.devoxxdemo.main.data.DevoxxAdapterItem
+import com.chyrkov.devoxxdemo.main.adapter.DevoxxAdapterItem
 import com.chyrkov.devoxxdemo.main.data.DevoxxEvent
 import com.chyrkov.devoxxdemo.main.data.DevoxxRepository
 
@@ -10,7 +10,7 @@ class DevoxxLiveData(private val repo: DevoxxRepository) : MutableLiveData<List<
     private val listener = { data: List<DevoxxEvent> ->
         value = data
             .asSequence()
-            .map { DevoxxAdapterItem(it.name) }
+            .map { DevoxxAdapterItem(it) }
             .toList()
     }
 
