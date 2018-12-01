@@ -1,10 +1,10 @@
 package com.chyrkov.devoxxdemo.app
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.chyrkov.devoxxdemo.di.KoinModules
 import org.koin.android.ext.android.startKoin
 
-class DevoxxApp : Application() {
+class DevoxxApp : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()

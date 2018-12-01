@@ -2,7 +2,8 @@ package com.chyrkov.devoxxdemo.di
 
 import com.chyrkov.devoxxdemo.main.data.DevoxxRepository
 import com.chyrkov.devoxxdemo.main.viewmodel.DevoxxLiveData
-import com.google.firebase.database.FirebaseDatabase
+import com.chyrkov.devoxxdemo.main.viewmodel.DevoxxViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 
@@ -10,9 +11,10 @@ class KoinModules {
 
     private val mainModule = module {
 
-        single { FirebaseDatabase.getInstance() }
+        single { FirebaseFirestore.getInstance() }
         single { DevoxxRepository(get()) }
         single { DevoxxLiveData(get()) }
+        single { DevoxxViewModel(get()) }
 
     }
 

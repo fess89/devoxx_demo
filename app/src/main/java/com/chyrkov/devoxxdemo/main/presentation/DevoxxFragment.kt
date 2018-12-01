@@ -30,6 +30,9 @@ class DevoxxFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMainBinding.inflate(inflater)
+        binding.recyclerView.layoutManager = linearLayoutManager
+        adapter = DevoxxAdapter()
+        binding.recyclerView.adapter = adapter
         return binding.root
     }
 

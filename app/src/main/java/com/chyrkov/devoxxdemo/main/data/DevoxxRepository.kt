@@ -1,35 +1,29 @@
 package com.chyrkov.devoxxdemo.main.data
 
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.QuerySnapshot
 
-class DevoxxRepository(private val firebaseDatabase: FirebaseDatabase) {
+class DevoxxRepository(private val firestore: FirebaseFirestore) {
 
-    class EventsListener(private val listener: (List<DevoxxEvent>) -> Unit) : ValueEventListener {
-
-        override fun onDataChange(snapshot: DataSnapshot) {
-            val list = snapshot.children
-                .map { it.getValue(DevoxxEvent::class.java) }
-                .map { it!! }
-                .toList()
-            listener.invoke(list)
-        }
-
-        override fun onCancelled(error: DatabaseError) {}
-    }
-
-    private var eventsListener: ValueEventListener? = null
-
-    private val databaseReference = firebaseDatabase.getReference("events")
+    private var registration: ListenerRegistration? = null
 
     fun subscribe(listener: (List<DevoxxEvent>) -> Unit) {
-        this.eventsListener = EventsListener(listener)
-        firebaseDatabase.getReference("events").addValueEventListener(eventsListener as EventsListener)
+        registration = firestore
+            .collection("events")
+            .addSnapshotListener(EventListener<QuerySnapshot> { snapshot, _ ->
+                if (snapshot == null) {
+                    return@EventListener
+                }
+                val list = snapshot.documents
+                    .map { it -> it.toObject(DevoxxEvent::class.java)!! }
+                    .toList()
+                listener.invoke(list)
+            })
     }
 
     fun unsubscribe() {
-        eventsListener?.let { databaseReference.removeEventListener(it) }
+        registration?.remove()
     }
 }
