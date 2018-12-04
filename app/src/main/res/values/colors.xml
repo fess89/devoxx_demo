@@ -3,6 +3,7 @@
     <color name="colorPrimary">#ff4800</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="gray">#777777</color>
     <color name="color_likes">#ff4747</color>
     <color name="color_text_black">#000000</color>
     <color name="methodology">#00ff00</color>

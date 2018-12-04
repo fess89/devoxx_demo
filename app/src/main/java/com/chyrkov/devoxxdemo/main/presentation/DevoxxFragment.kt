@@ -47,11 +47,11 @@ class DevoxxFragment : Fragment() {
         devoxxViewModel.devoxxLiveData.observe(this, Observer<List<DevoxxAdapterItem>> {
             adapter.setData(it)
         })
-        devoxxViewModel.clicks.observe(this, Observer<Boolean> { if (it) startAddActivity() })
-    }
-
-    private fun startAddActivity() {
-        val intent = Intent(context, AddEventActivity::class.java)
-        startActivityForResult(intent, 42)
+        devoxxViewModel.clicks.observe(this, Observer<Boolean> {
+            if (it) {
+                val intent = Intent(context, AddEventActivity::class.java)
+                activity?.startActivityForResult(intent, 42)
+            }
+        })
     }
 }

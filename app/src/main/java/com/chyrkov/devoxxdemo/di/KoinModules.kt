@@ -10,22 +10,21 @@ import org.koin.dsl.module.module
 
 class KoinModules {
 
-    private val mainModule = module {
-
+    private val repoModule = module {
         single { FirebaseFirestore.getInstance() }
         single { DevoxxRepository(get()) }
+    }
+
+    private val mainModule = module {
         single { DevoxxLiveData(get()) }
         single { DevoxxViewModel(get()) }
-
     }
 
     private val addEventModule = module {
-
-        single { AddEventViewModel() }
-
+        factory { AddEventViewModel(get()) }
     }
 
     fun getModules(): List<Module> {
-        return listOf(mainModule)
+        return listOf(repoModule, mainModule, addEventModule)
     }
 }

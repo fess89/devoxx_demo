@@ -8,8 +8,8 @@ class DevoxxRepository(private val firestore: FirebaseFirestore) {
 
     fun subscribe(listener: (List<DevoxxEvent>) -> Unit) {
         registration = firestore
-            .collection("events")
-            .orderBy("startTime", Query.Direction.ASCENDING)
+            .collection(EVENTS)
+            .orderBy(START_TIME, Query.Direction.ASCENDING)
             .addSnapshotListener(EventListener<QuerySnapshot> { snapshot, _ ->
                 if (snapshot == null) {
                     return@EventListener
@@ -21,7 +21,16 @@ class DevoxxRepository(private val firestore: FirebaseFirestore) {
             })
     }
 
+    fun addEvent(event: DevoxxEvent) {
+        firestore.collection(EVENTS).add(event)
+    }
+
     fun unsubscribe() {
         registration?.remove()
+    }
+
+    companion object {
+        const val EVENTS = "events"
+        const val START_TIME = "startTime"
     }
 }
