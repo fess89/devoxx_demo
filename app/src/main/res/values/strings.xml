@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Devoxx Demo</string>
+    <string name="lecture">Lecture</string>
+    <string name="other_event">Other event</string>
+    <string name="event_name">Event name</string>
+    <string name="location">Location</string>
+    <string name="lecturers">Lecturers</string>
+    <string name="topic">Topic</string>
 </resources>
